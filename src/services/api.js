@@ -6,7 +6,7 @@ export const getAllAdvert = async (page) => {
   return data;
 };
 
-export const updateCarById = async (carId) => {
-  const { data } = await fetchAdvert.patch("/advert", carId);
-  return data;
+export const getCarById = async (carId) => {
+  const { data } = await fetchAdvert.get(`/advert?id=${carId}`);
+  return data.pop();
 };

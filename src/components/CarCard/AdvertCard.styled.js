@@ -11,7 +11,6 @@ export const WraperCss = styled.div`
 `;
 export const ImgCss = styled.img`
   border-radius: 14px;
-  object-fit: fill;
   width: 268px;
   height: 274px;
   margin-bottom: 14px;
@@ -24,10 +23,10 @@ export const HeartIcon = styled(Heart)`
   fill: #ffff;
 
   &:hover {
-    fill: var(--primery-blue);
+    fill: var(--primary-blue);
   }
   &:active {
-    fill: var(--primery-blue);
+    fill: var(--primary-blue);
   }
 `;
 export const BtnCss = styled.button`
@@ -47,7 +46,7 @@ export const ModelWrapCss = styled.div`
 `;
 export const GrigWrapCss = styled.div`
   color: var(--secondary-color);
-  font-family: var(--primery-font);
+  font-family: var(--primary-font);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
@@ -101,10 +100,10 @@ export const ButtonCss = styled.button`
 
   border-radius: 12px;
   cursor: pointer;
-  background: var(--primery-blue);
+  background: var(--primary-blue);
 
-  color: var(--primery-white);
-  font-family: var(--primery-font);
+  color: var(--primary-white);
+  font-family: var(--primary-font);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;

@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getAllAdvertThunk } from "./advertThunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { getAllAdvertThunk, getCarBiIdThunk } from "./advertThunk";
 
 const INITIAL_STATE = {
   carsAdvert: [],
   pages: 1,
   error: null,
   isLoading: true,
+  currentCar: null,
 };
 
 const handleLoadMore = (state) => {
@@ -13,16 +14,14 @@ const handleLoadMore = (state) => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
-};
-
 const advertSlice = createSlice({
   name: "advert",
   initialState: INITIAL_STATE,
   reducers: {
     loadMore: handleLoadMore,
+    setCurrentCar: (state, payload) => {
+      state.currentCar = payload.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -32,15 +31,22 @@ const advertSlice = createSlice({
         state.error = null;
       })
 
-      .addCase(getAllAdvertThunk.pending, (state) => {
-        state.isLoading = true;
+      .addCase(getCarBiIdThunk.fulfilled, (state, action) => {
+        state.currentCar = action.payload;
+        state.error = null;
       })
 
-      .addCase(getAllAdvertThunk.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
+      .addMatcher(isAnyOf(getAllAdvertThunk.pending, getCarBiIdThunk.pending), (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addMatcher(isAnyOf(getAllAdvertThunk.rejected, getCarBiIdThunk.rejected), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { loadMore } = advertSlice.actions;
+export const { loadMore, setCurrentCar } = advertSlice.actions;
 export const advertReducer = advertSlice.reducer;

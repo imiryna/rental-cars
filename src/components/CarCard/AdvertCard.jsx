@@ -1,11 +1,20 @@
-import React from "react";
 import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss } from "./AdvertCard.styled";
+import { useDispatch } from "react-redux";
+import { setCurrentCar } from "Store/advert/advertSlice";
 
-export const AdvertCard = ({ carInfo }) => {
+export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
+  const dispatcher = useDispatch();
+
+  const OpenModal = (e) => {
+    const carId = e.target.id;
+    document.body.style.overflow = "hidden";
+    dispatcher(setCurrentCar(carId));
+    setIsOpenModal(true);
+  };
   return (
     <WraperCss>
       <ContainerCss>
-        <ImgCss src={carInfo.img} width={268} height={276} />
+        <ImgCss src={carInfo.img} width={461} height={276} />
         <BtnCss>
           <HeartIcon />
         </BtnCss>
@@ -34,7 +43,9 @@ export const AdvertCard = ({ carInfo }) => {
         <VerticalLine></VerticalLine>
         <div>{carInfo.id}</div>
       </GrigWrapCss>
-      <ButtonCss>Learn more</ButtonCss>
+      <ButtonCss id={carInfo.id} onClick={OpenModal}>
+        Learn more
+      </ButtonCss>
     </WraperCss>
   );
 };

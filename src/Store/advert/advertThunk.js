@@ -9,3 +9,12 @@ export const getAllAdvertThunk = createAsyncThunk("advert/getAll", async (page, 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const getCarBiIdThunk = createAsyncThunk("advert/getCarBiId", async (carId, thunkAPI) => {
+  try {
+    const data = await API.getCarById(carId);
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

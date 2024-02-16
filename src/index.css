@@ -66,10 +66,10 @@ body.modal-open {
 /* Root styles */
 
 :root {
-  --primery-white: #ffffff;
-  --primery-black: #121417;
-  --primery-blue: #3470ff;
-  --primery-font: "Manrope", sans-serif;
+  --primary-white: #ffffff;
+  --primary-black: #121417;
+  --primary-blue: #3470ff;
+  --primary-font: "Manrope", sans-serif;
 
   --secondary-blue: #0b44cd;
   --secondary-color: #8a8a89;
