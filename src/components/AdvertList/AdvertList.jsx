@@ -34,7 +34,7 @@ export const AdvertList = () => {
         ))}
         <button onClick={handleLoadMore}>Load more</button>
         {isLoading && <Loader />}
-        {isOpenModal && <Modal />}
+        {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
       </MainWrapCss>
     </>
   );

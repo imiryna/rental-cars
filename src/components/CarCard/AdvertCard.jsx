@@ -1,4 +1,4 @@
-import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss } from "./AdvertCard.styled";
+import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss } from "./AdvertCard.styled";
 import { useDispatch } from "react-redux";
 import { setCurrentCar } from "Store/advert/advertSlice";
 
@@ -11,13 +11,14 @@ export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
     dispatcher(setCurrentCar(carId));
     setIsOpenModal(true);
   };
+
+  const carFavorite = carInfo.year > 2010;
+
   return (
     <WraperCss>
       <ContainerCss>
         <ImgCss src={carInfo.img} width={461} height={276} />
-        <BtnCss>
-          <HeartIcon />
-        </BtnCss>
+        <BtnCss>{carFavorite ? <HeartIcon /> : <BlueHeartIcon />}</BtnCss>
       </ContainerCss>
       <ModelWrapCss>
         <div>

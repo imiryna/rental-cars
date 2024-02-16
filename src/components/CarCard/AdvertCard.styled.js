@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as Heart } from "images/heart.svg";
+import { ReactComponent as HeartIco } from "images/heart1.svg";
 
 export const WraperCss = styled.div`
   width: 276px;
@@ -20,15 +21,30 @@ export const HeartIcon = styled(Heart)`
   width: 18px;
   height: 18px;
   cursor: pointer;
-  fill: #ffff;
 
   &:hover {
     fill: var(--primary-blue);
+    stroke: none;
   }
   &:active {
     fill: var(--primary-blue);
+    stroke: none;
   }
 `;
+
+export const BlueHeartIcon = styled(HeartIco)`
+  cursor: pointer;
+  fill: var(--primary-blue);
+  &:hover {
+    fill: var(--primary-blue);
+    stroke: none;
+  }
+  &:active {
+    fill: var(--primary-blue);
+    stroke: none;
+  }
+`;
+
 export const BtnCss = styled.button`
   background-color: transparent;
   position: absolute;
@@ -81,13 +97,12 @@ export const VerticalLine = styled.div`
   }
   /* &::after {
     /* border: 1px solid rgba(18, 20, 23, 0.1); */
-    border-left: 4px solid var(--secondary-color);
-    height: 16px;
-    position: absolute;
-    right: 1%;
-    /* margin-left: -3px; */
-    top: 0;
-  } */
+  border-left: 4px solid var(--secondary-color);
+  height: 16px;
+  position: absolute;
+  right: 1%;
+  /* margin-left: -3px; */
+  top: 0;
 `;
 export const ButtonCss = styled.button`
   width: 274px;

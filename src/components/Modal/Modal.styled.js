@@ -23,13 +23,14 @@ export const ModalContentCss = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: var(--primary-white);
-  width: 281px;
+  width: 280px;
   padding: 40px 35px 40px;
   border-radius: 24px;
   z-index: 1;
   overflow: hidden;
+
   @media (max-width: 768px) {
-    width: 541px;
+    /* width: 541px; */
   }
 `;
 
@@ -52,12 +53,17 @@ export const CloseIcon = styled(Close)`
   height: 16px;
 `;
 export const ContainerCss = styled.div`
-  width: 461px;
+  width: 240px;
   margin-bottom: 13px;
+
+  @media (max-width: 768px) {
+    width: 461px;
+  }
 `;
 
 export const ImgCss = styled.img`
   border-radius: 14px;
-  width: 461px;
-  height: 248px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 `;

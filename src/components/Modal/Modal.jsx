@@ -1,18 +1,41 @@
-import React from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentCar, selectCarsAdvert } from "Store/advert/advertSelector";
 import { ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss } from "./Modal.styled";
 
-export const Modal = () => {
+export const Modal = ({ setIsOpenModal }) => {
   const currentCarId = useSelector(selectCurrentCar);
   const allCars = useSelector(selectCarsAdvert);
   const currentCar = allCars.find((car) => car.id == currentCarId);
+
+  const closeModal = () => {
+    document.body.style.overflow = "auto";
+    setIsOpenModal(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => e.code === "Escape" && closeModal();
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [closeModal]);
+
+  const handleClickOverlay = () => {
+    closeModal();
+  };
+
+  const closeOnKeyDown = (e) => {
+    if (e.key === "Esc") {
+      console.log("close window");
+      closeModal();
+    }
+  };
+
   return (
     <>
       {currentCar && (
-        <ModalCss>
+        <ModalCss onClick={handleClickOverlay}>
           <ModalContentCss>
-            <BtnCss>
+            <BtnCss onClick={closeModal}>
               <CloseIcon />
             </BtnCss>
             <ContainerCss>
