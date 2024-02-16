@@ -1,17 +1,10 @@
 import React from "react";
-import { AdvertCard } from "components/CarCard/AdvertCard";
+import { AdvertList } from "components/AdvertList/AdvertList";
 
 const HomePage = () => {
   return (
     <>
-      <ul>
-        <li>
-          <AdvertCard />
-        </li>
-        <li>model of rental cars</li>
-        <li>model of rental cars</li>
-        <li>model of rental cars</li>
-      </ul>
+      <AdvertList />
     </>
   );
 };

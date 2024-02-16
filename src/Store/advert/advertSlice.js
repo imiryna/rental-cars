@@ -3,8 +3,14 @@ import { getAllAdvertThunk } from "./advertThunk";
 
 const INITIAL_STATE = {
   carsAdvert: [],
+  pages: 1,
   error: null,
   isLoading: true,
+};
+
+const handleLoadMore = (state) => {
+  state.pages += 1;
+  state.isLoading = true;
 };
 
 const handleRejected = (state, { payload }) => {
@@ -15,11 +21,14 @@ const handleRejected = (state, { payload }) => {
 const advertSlice = createSlice({
   name: "advert",
   initialState: INITIAL_STATE,
+  reducers: {
+    loadMore: handleLoadMore,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllAdvertThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.advert = action.payload.advert;
+        state.carsAdvert = [...state.carsAdvert, ...action.payload];
         state.error = null;
       })
 
@@ -33,4 +42,5 @@ const advertSlice = createSlice({
   },
 });
 
+export const { loadMore } = advertSlice.actions;
 export const advertReducer = advertSlice.reducer;

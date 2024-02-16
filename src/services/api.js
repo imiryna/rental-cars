@@ -1,7 +1,7 @@
 import { fetchAdvert } from "./baseUrl";
 
-export const getAllAdvert = async () => {
-  const { data } = await fetchAdvert.get("/advert?limit=12&p=1");
+export const getAllAdvert = async (page) => {
+  const { data } = await fetchAdvert.get(`/advert?limit=12&p=${page}`);
 
   return data;
 };
