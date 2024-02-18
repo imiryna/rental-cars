@@ -1,10 +1,13 @@
 import React from "react";
+import { AdvertList } from "components/AdvertList/AdvertList";
+import { ButtonGoBack } from "components/ButtonGoBack/ButtonGoBack";
 
 const CatalogPage = () => {
   return (
-    <div>
-      <h1>Theris your catalog of cars</h1>
-    </div>
+    <>
+      <ButtonGoBack />
+      <AdvertList />
+    </>
   );
 };
 

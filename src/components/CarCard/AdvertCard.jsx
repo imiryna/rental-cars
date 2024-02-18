@@ -1,4 +1,4 @@
-import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss } from "./AdvertCard.styled";
+import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss, ContentBoxCss } from "./AdvertCard.styled";
 import { useDispatch } from "react-redux";
 import { setCurrentCar } from "Store/advert/advertSlice";
 import { toggleToFavorites } from "Store/advert/advertSlice";
@@ -30,11 +30,11 @@ export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
         <BtnCss onClick={toggleFavoritesByClick}>{carFavorite ? <BlueHeartIcon /> : <HeartIcon />}</BtnCss>
       </ContainerCss>
       <ModelWrapCss>
-        <div>
+        <ContentBoxCss>
           <div>{carInfo.make}</div>
           <div>{carInfo.model},</div>
           <div>{carInfo.years}</div>
-        </div>
+        </ContentBoxCss>
         <div>{carInfo.rentalPrice}</div>
       </ModelWrapCss>
       <GrigWrapCss>

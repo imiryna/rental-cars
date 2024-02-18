@@ -2,6 +2,29 @@ import styled from "styled-components";
 import { ReactComponent as ArrowUp } from "images/arrow-up.svg";
 import { ReactComponent as ArrowDown } from "images/arrow-down.svg";
 
+export const MainWrapCss = styled.div`
+  position: fixed;
+  top: 0;
+  padding: 150px 290px 0 290px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  z-index: 5;
+  background-color: var(--primary-white);
+`;
+
+export const BoxGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  margin-right: 18px; */
+`;
+
 export const ArrowUpIcon = styled(ArrowUp)`
   width: 10px;
   height: 5px;
@@ -38,26 +61,6 @@ export const TextMenuPrise = styled.span`
 
   text-align: left;
   margin-right: 11px;
-`;
-
-export const MainWrapCss = styled.div`
-  position: fixed;
-  top: 0;
-  padding: 150px 290px 0 290px;
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-  z-index: 5;
-  background-color: var(--primary-white);
-`;
-
-export const BoxGrid = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 18px;
-  margin-right: 18px; */
 `;
 
 export const BoxForFilterCss = styled.div`

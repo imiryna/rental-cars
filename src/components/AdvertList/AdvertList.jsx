@@ -3,10 +3,10 @@ import { AdvertCard } from "components/CarCard/AdvertCard";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCarsAdvert, selectFilteredCarsAdvert, selectPage, selectIsLoading } from "Store/advert/advertSelector";
 import { getAllAdvertThunk } from "Store/advert/advertThunk";
-import { loadMore } from "Store/advert/advertSlice";
-import { MainWrapCss, BoxListCss, LoadMoreBtn } from "./AdvertList.styled";
+import { MainWrapCss, BoxListCss } from "./AdvertList.styled";
 import { Loader } from "components/Loader/Loader";
 import { Modal } from "components/Modal/Modal";
+import { LoadeMoreButtn } from "components/LoadeMoreButton/LoadeMoreButton";
 
 export const AdvertList = () => {
   const dispatcher = useDispatch();
@@ -23,10 +23,6 @@ export const AdvertList = () => {
     dispatcher(getAllAdvertThunk(currentPage));
   }, [dispatcher, currentPage]);
 
-  const handleLoadMore = () => {
-    dispatcher(loadMore());
-  };
-
   return (
     <>
       <MainWrapCss>
@@ -35,8 +31,8 @@ export const AdvertList = () => {
             <AdvertCard carInfo={item} setIsOpenModal={setIsOpenModal} />
           </BoxListCss>
         ))}
-        <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
         {isLoading && <Loader />}
+        {!isLoading && <LoadeMoreButtn />}
         {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
       </MainWrapCss>
     </>

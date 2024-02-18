@@ -52,6 +52,14 @@ export const BtnCss = styled.button`
   right: 13px;
 `;
 
+export const ContentBoxCss = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px;
+`;
+
 export const ContainerCss = styled.div``;
 export const ModelWrapCss = styled.div`
   display: flex;
