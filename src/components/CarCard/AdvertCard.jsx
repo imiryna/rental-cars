@@ -1,6 +1,9 @@
 import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss } from "./AdvertCard.styled";
 import { useDispatch } from "react-redux";
 import { setCurrentCar } from "Store/advert/advertSlice";
+import { toggleToFavorites } from "Store/advert/advertSlice";
+import { selectFavorites } from "Store/advert/advertSelector";
+import { useSelector } from "react-redux";
 
 export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
   const dispatcher = useDispatch();
@@ -12,13 +15,19 @@ export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
     setIsOpenModal(true);
   };
 
-  const carFavorite = carInfo.year > 2010;
+  const toggleFavoritesByClick = () => {
+    dispatcher(toggleToFavorites(carInfo.id));
+  };
+
+  const allFavorites = useSelector(selectFavorites);
+
+  const carFavorite = allFavorites.includes(carInfo.id);
 
   return (
     <WraperCss>
       <ContainerCss>
         <ImgCss src={carInfo.img} width={461} height={276} />
-        <BtnCss>{carFavorite ? <HeartIcon /> : <BlueHeartIcon />}</BtnCss>
+        <BtnCss onClick={toggleFavoritesByClick}>{carFavorite ? <BlueHeartIcon /> : <HeartIcon />}</BtnCss>
       </ContainerCss>
       <ModelWrapCss>
         <div>

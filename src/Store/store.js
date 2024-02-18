@@ -7,15 +7,14 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 const persistConfig = {
   key: "favorites",
   storage,
-  whitelist: [""] /** template */,
+  whitelist: ["favorites"],
 };
 
-const persistedReducer = persistReducer(persistConfig, advertReducer); /** template */
+const persistedReducer = persistReducer(persistConfig, advertReducer);
 
 export const store = configureStore({
   reducer: {
-    // advert: advertReducer,
-    advert: persistedReducer /** template */,
+    advert: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

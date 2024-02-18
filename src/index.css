@@ -73,5 +73,6 @@ body.modal-open {
 
   --secondary-blue: #0b44cd;
   --secondary-color: #8a8a89;
+  --secondary-grey: rgb(247, 247, 251);
   --secondary-font: "Montserrat", sans-serif;
 }

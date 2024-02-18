@@ -23,9 +23,27 @@ export const BoxListCss = styled.div`
   display: flex;
   flex-direction: column;
   gap: 29px;
+  margin-bottom: 70px;
 
   @media (min-width: 768px) {
     flex-direction: row;
     gap: 29px, 50px;
   }
+`;
+
+export const LoadMoreBtn = styled.button`
+  margin-left: 563px;
+  margin-right: 680px;
+  background-color: inherit;
+  border: transparent;
+  width: 79px;
+
+  color: var(--primary-blue);
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  text-align: left;
+  text-decoration-line: underline;
 `;

@@ -67,3 +67,26 @@ export const ImgCss = styled.img`
   max-width: 100%;
   height: auto;
 `;
+export const RentalCarBtn = styled.button`
+  width: 168px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 50px 12px 50px;
+  border-radius: 12px;
+  background-color: var(--primary-blue);
+  cursor: pointer;
+
+  &:hower {
+    background-color: var(--secondary-blue);
+  }
+
+  color: var(--primary-white);
+  font-family: var(--primary-font);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+`;

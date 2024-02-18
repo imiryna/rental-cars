@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentCar, selectCarsAdvert } from "Store/advert/advertSelector";
-import { ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss } from "./Modal.styled";
+import { ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss, RentalCarBtn } from "./Modal.styled";
 
 export const Modal = ({ setIsOpenModal }) => {
   const currentCarId = useSelector(selectCurrentCar);
   const allCars = useSelector(selectCarsAdvert);
-  const currentCar = allCars.find((car) => car.id == currentCarId);
+  const currentCar = allCars.find((car) => car.id === currentCarId);
 
   const closeModal = () => {
     document.body.style.overflow = "auto";
@@ -23,12 +23,12 @@ export const Modal = ({ setIsOpenModal }) => {
     closeModal();
   };
 
-  const closeOnKeyDown = (e) => {
-    if (e.key === "Esc") {
-      console.log("close window");
-      closeModal();
-    }
-  };
+  // const closeOnKeyDown = (e) => {
+  //   if (e.key === "Esc") {
+  //     console.log("close window");
+  //     closeModal();
+  //   }
+  // };
 
   return (
     <>
@@ -64,7 +64,9 @@ export const Modal = ({ setIsOpenModal }) => {
               <div>VerticalLine</div>
               <div>{currentCar.id}</div>
             </div>
-            <button>Rental car</button>
+            <RentalCarBtn>
+              <a href="tel:+380730000000">Rental car</a>
+            </RentalCarBtn>
           </ModalContentCss>
         </ModalCss>
       )}

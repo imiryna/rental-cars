@@ -7,6 +7,10 @@ const INITIAL_STATE = {
   error: null,
   isLoading: true,
   currentCar: null,
+  filteredMake: "",
+  filteredPrice: "",
+  filteredCarList: [],
+  favorites: [],
 };
 
 const handleLoadMore = (state) => {
@@ -22,7 +26,30 @@ const advertSlice = createSlice({
     setCurrentCar: (state, payload) => {
       state.currentCar = payload.payload;
     },
+    setFilterMake: (state, action) => {
+      state.filteredMake = action.payload;
+    },
+    setFilterPrice: (state, action) => {
+      state.filteredPrice = action.payload;
+    },
+    toggleToFavorites: (state, action) => {
+      if (state.favorites.includes(action.payload)) {
+        state.favorites = state.favorites.filter((item) => item !== action.payload);
+      } else {
+        state.favorites.push(action.payload);
+      }
+    },
+    commonFilter: (state, action) => {
+      const filters = action.payload;
+      state.filteredCarList = state.carsAdvert.filter((item) => {
+        const rentalPrice = Number(item.rentalPrice.slice(1));
+        const makeFilter = filters.make ? item.make === filters.make : true;
+        const priceFilter = filters.price ? rentalPrice <= filters.price : true;
+        return makeFilter && priceFilter;
+      });
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getAllAdvertThunk.fulfilled, (state, action) => {
@@ -48,5 +75,5 @@ const advertSlice = createSlice({
   },
 });
 
-export const { loadMore, setCurrentCar } = advertSlice.actions;
+export const { loadMore, setCurrentCar, setFilterMake, setFilterPrice, toggleToFavorites, commonFilter } = advertSlice.actions;
 export const advertReducer = advertSlice.reducer;
