@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { MenuItemsCss, ContainerMenu } from "./DropdownMenu.styled";
-import { BoxForFilterCss, TitleCss, BoxDropMenu, ArrowUpIcon, ArrowDownIcon, BtnCss, TextMenuModel } from "components/Layout/Layout.styled";
+import { MenuItemsCss, ContainerMenu, DropdownPanelCss, BoxForFilterCss, TitleCss, BoxDropMenu, ArrowUpIcon, ArrowDownIcon, BtnCss, TextMenuModel } from "./DropdownMenu.styled";
+
 import { useDispatch } from "react-redux";
 
-export const DropdownMenu = ({ children, title, handleFunction }) => {
+export const DropdownMenu = ({ children, title, placeHolder, handleFunction }) => {
   const [isToggledDropdown, setIsToggledDropdown] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dispatcher = useDispatch();
@@ -20,10 +20,11 @@ export const DropdownMenu = ({ children, title, handleFunction }) => {
 
   return (
     <BoxForFilterCss>
-      <TitleCss>
-        {selectedOption ? selectedOption : title}
+      <TitleCss>{title}</TitleCss>
+      <DropdownPanelCss>
+        {selectedOption ? selectedOption : placeHolder}
         <BtnCss onClick={handleToggleDropdown}>{isToggledDropdown ? <ArrowDownIcon /> : <ArrowUpIcon />}</BtnCss>
-      </TitleCss>
+      </DropdownPanelCss>
       {isToggledDropdown && (
         <BoxDropMenu>
           <TextMenuModel>
@@ -38,15 +39,5 @@ export const DropdownMenu = ({ children, title, handleFunction }) => {
         </BoxDropMenu>
       )}
     </BoxForFilterCss>
-    // <div>
-    //   <ContainerMenu>
-    //     {makesCar.map((make) => (
-    //       <MenuItemsCss key={make.make}>{make.make}</MenuItemsCss>
-    //     ))}
-    //     {priseCar.map((prise, index) => (
-    //       <MenuItemsCss key={index}>{prise.prise}</MenuItemsCss>
-    //     ))}
-    //   </ContainerMenu>
-    // </div>
   );
 };

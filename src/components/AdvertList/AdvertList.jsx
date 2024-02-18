@@ -25,7 +25,7 @@ export const AdvertList = () => {
 
   return (
     <>
-      <MainWrapCss>
+      <MainWrapCss id="maina-wrappa">
         {shownCars.map((item) => (
           <BoxListCss key={item.id}>
             <AdvertCard carInfo={item} setIsOpenModal={setIsOpenModal} />

@@ -10,6 +10,7 @@ export const WraperCss = styled.div`
 
   position: relative;
 `;
+
 export const ImgCss = styled.img`
   border-radius: 14px;
   width: 268px;
@@ -55,12 +56,31 @@ export const BtnCss = styled.button`
 export const ContentBoxCss = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  gap: 4px;
   align-items: center;
   padding: 0px;
 `;
 
-export const ContainerCss = styled.div``;
+export const ContentInfoCss = styled.div`
+  color: var(--primary-black);
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  text-align: left;
+`;
+
+export const PriceContentCss = styled.div`
+  color: var(--primary-black);
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-right: 10px;
+  text-align: left;
+`;
+
 export const ModelWrapCss = styled.div`
   display: flex;
   flex-direction: row;
@@ -75,42 +95,41 @@ export const GrigWrapCss = styled.div`
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
+  width: 274px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
 
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr 1px 1fr 1px;
-  grid-auto-flow: column;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-bottom: 8px;
   position: relative;
-  /* display: flex;
-  flex-direction: row;
-  gap: 6px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  position: relative; */
+  flex-wrap: wrap;
 `;
 
 export const VerticalLine = styled.div`
-  &::before {
-    /* border: 1px solid rgba(18, 20, 23, 0.1); */
-    border-left: 1px solid var(--secondary-color);
-    height: 16px;
-    /* position: absolute; */
-    left: 2px;
-    /* margin-left: -3px; */
-    /* top: 0; */
-  }
+  color: rgba(18, 20, 23, 0.5);
+  font-family: var(--primary-font);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  border-right: 1px solid var(--secondary-color);
+  padding-left: 6px;
+  padding-right: 6px;
+
   /* &::after {
-    /* border: 1px solid rgba(18, 20, 23, 0.1); */
-  border-left: 4px solid var(--secondary-color);
-  height: 16px;
-  position: absolute;
-  right: 1%;
-  /* margin-left: -3px; */
-  top: 0;
+    border-top: 1px solid var(--secondary-color);
+    content: "";
+    display: block;
+    width: 1px; 
+    height: 16px; 
+    background-color: black; 
+    position: absolute;
+    right: 0;
+    top: 0;
+  } */
 `;
 export const ButtonCss = styled.button`
   width: 274px;

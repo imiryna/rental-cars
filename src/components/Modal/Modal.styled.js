@@ -5,7 +5,7 @@ export const ModalCss = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 15;
   top: 0;
   left: 0;
   position: fixed;
@@ -23,10 +23,10 @@ export const ModalContentCss = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: var(--primary-white);
-  width: 280px;
+  width: 541px;
   padding: 40px 35px 40px;
   border-radius: 24px;
-  z-index: 1;
+  /* z-index: 15; */
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -53,12 +53,7 @@ export const CloseIcon = styled(Close)`
   height: 16px;
 `;
 export const ContainerCss = styled.div`
-  width: 240px;
-  margin-bottom: 13px;
-
-  @media (max-width: 768px) {
-    width: 461px;
-  }
+  width: 461px;
 `;
 
 export const ImgCss = styled.img`
@@ -67,6 +62,7 @@ export const ImgCss = styled.img`
   max-width: 100%;
   height: auto;
 `;
+
 export const RentalCarBtn = styled.button`
   width: 168px;
 
@@ -89,4 +85,67 @@ export const RentalCarBtn = styled.button`
   font-weight: 600;
   line-height: 1.4;
   text-align: left;
+`;
+
+export const DescriptionCss = styled.div`
+  color: rgb(18, 20, 23);
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  margin-top: 14px;
+  margin-bottom: 24px;
+`;
+export const TextCss = styled.p`
+  text-align: left;
+`;
+
+export const RentalConditionBoxCss = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const RentalConditionPanelCss = styled.button`
+  color: rgb(54, 53, 53);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 35px;
+  background-color: var(--secondary-grey);
+  justify-content: center;
+  align-items: center;
+  padding: 7px 14px 7px 14px;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+`;
+
+export const BlueTextCss = styled.span`
+  color: rgb(52, 112, 255);
+`;
+
+export const GridWrapCss = styled.div`
+  color: var(--secondary-color);
+  font-family: var(--primary-font);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  /* width: 274px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+  position: relative;
+  flex-wrap: wrap;
 `;

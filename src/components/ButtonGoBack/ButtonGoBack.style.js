@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ButtonGoBackCss = styled.button`
   display: block;
   position: absolute;
-  top: 200px;
+  top: 227px;
   left: 150px;
   background-color: var(--secondary-grey);
   padding: 5px;

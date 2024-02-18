@@ -1,17 +1,38 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentCar, selectCarsAdvert } from "Store/advert/advertSelector";
-import { ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss, RentalCarBtn } from "./Modal.styled";
+import { TextCss, GridWrapCss, ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss, RentalCarBtn, DescriptionCss, RentalConditionBoxCss, RentalConditionPanelCss, BlueTextCss } from "./Modal.styled";
+
+import { ModelWrapCss, VerticalLine, ContentBoxCss, ContentInfoCss } from "components/CarCard/AdvertCard.styled";
 
 export const Modal = ({ setIsOpenModal }) => {
   const currentCarId = useSelector(selectCurrentCar);
   const allCars = useSelector(selectCarsAdvert);
-  const currentCar = allCars.find((car) => car.id === currentCarId);
+  const currentCar = allCars.find((car) => car.id === Number(currentCarId));
 
-  const closeModal = () => {
+  const rentalConditions = currentCar.rentalConditions.split("\n");
+  rentalConditions.push(`Mileage: ${currentCar.mileage}`);
+  rentalConditions.push(`Price: ${currentCar.rentalPrice}`);
+
+  const rentalConditionsTags = rentalConditions.map((option) => {
+    let readyTag = <></>;
+    if (option.includes(":")) {
+      const splittedString = option.split(":");
+      readyTag = (
+        <RentalConditionPanelCss>
+          {splittedString[0]}: <BlueTextCss>{splittedString[1]}</BlueTextCss>
+        </RentalConditionPanelCss>
+      );
+    } else {
+      readyTag = <RentalConditionPanelCss>{option}</RentalConditionPanelCss>;
+    }
+    return readyTag;
+  });
+
+  const closeModal = useCallback(() => {
     document.body.style.overflow = "auto";
     setIsOpenModal(false);
-  };
+  }, [setIsOpenModal]);
 
   useEffect(() => {
     const handleKeyDown = (e) => e.code === "Escape" && closeModal();
@@ -22,13 +43,6 @@ export const Modal = ({ setIsOpenModal }) => {
   const handleClickOverlay = () => {
     closeModal();
   };
-
-  // const closeOnKeyDown = (e) => {
-  //   if (e.key === "Esc") {
-  //     console.log("close window");
-  //     closeModal();
-  //   }
-  // };
 
   return (
     <>
@@ -41,29 +55,39 @@ export const Modal = ({ setIsOpenModal }) => {
             <ContainerCss>
               <ImgCss src={currentCar.img} width={461} height={276} />
             </ContainerCss>
-            <div>
-              <div>
-                <div>{currentCar.make}</div>
-                <div>{currentCar.model},</div>
-                <div>{currentCar.years}</div>
-              </div>
-            </div>
-            <div>
-              <div>info</div>
-              <div>VerticalLine</div>
-              <div>info</div>
-              <div>VerticalLine</div>
-              <div>{currentCar.rentalCompany}</div>
-              <div>VerticalLine</div>
-              <div>{currentCar.accessories[2]}</div>
-              <div>{currentCar.type}</div>
-              <div>VerticalLine</div>
-              <div>{currentCar.model}</div>
-              <div></div>
-              <div>{currentCar.id}</div>
-              <div>VerticalLine</div>
-              <div>{currentCar.id}</div>
-            </div>
+            <ModelWrapCss>
+              <ContentBoxCss>
+                <ContentInfoCss>{currentCar.make}</ContentInfoCss>
+                <ContentInfoCss>
+                  <BlueTextCss>{currentCar.model}</BlueTextCss>,
+                </ContentInfoCss>
+                <ContentInfoCss>{currentCar.year}</ContentInfoCss>
+              </ContentBoxCss>
+            </ModelWrapCss>
+            <GridWrapCss>
+              <VerticalLine>{currentCar.address.split(",")[1]}</VerticalLine>
+
+              <VerticalLine>{currentCar.address.split(",")[2]}</VerticalLine>
+
+              <VerticalLine>{currentCar.rentalCompany}</VerticalLine>
+
+              <VerticalLine>{currentCar.type}</VerticalLine>
+
+              <VerticalLine>{currentCar.model}</VerticalLine>
+
+              <VerticalLine>{currentCar.id}</VerticalLine>
+              <div> {currentCar.accessories[2]}</div>
+            </GridWrapCss>
+            <DescriptionCss>{currentCar.description}</DescriptionCss>
+            <TextCss>Accessories and functionalities:</TextCss>
+            <GridWrapCss>
+              {currentCar.accessories.map((item) => (
+                <VerticalLine>{item}</VerticalLine>
+              ))}
+            </GridWrapCss>
+            <TextCss>Rental conditions:</TextCss>
+            <RentalConditionBoxCss>{rentalConditionsTags}</RentalConditionBoxCss>
+
             <RentalCarBtn>
               <a href="tel:+380730000000">Rental car</a>
             </RentalCarBtn>

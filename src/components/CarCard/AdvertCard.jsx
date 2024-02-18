@@ -1,4 +1,5 @@
-import { HeartIcon, ContainerCss, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss, ContentBoxCss } from "./AdvertCard.styled";
+import { HeartIcon, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss, ContentBoxCss, PriceContentCss, ContentInfoCss } from "./AdvertCard.styled";
+import { BlueTextCss } from "components/Modal/Modal.styled";
 import { useDispatch } from "react-redux";
 import { setCurrentCar } from "Store/advert/advertSlice";
 import { toggleToFavorites } from "Store/advert/advertSlice";
@@ -25,33 +26,31 @@ export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
 
   return (
     <WraperCss>
-      <ContainerCss>
-        <ImgCss src={carInfo.img} width={461} height={276} />
-        <BtnCss onClick={toggleFavoritesByClick}>{carFavorite ? <BlueHeartIcon /> : <HeartIcon />}</BtnCss>
-      </ContainerCss>
+      <ImgCss src={carInfo.img} width={461} height={276} />
+      <BtnCss onClick={toggleFavoritesByClick}>{carFavorite ? <BlueHeartIcon /> : <HeartIcon />}</BtnCss>
       <ModelWrapCss>
         <ContentBoxCss>
-          <div>{carInfo.make}</div>
-          <div>{carInfo.model},</div>
-          <div>{carInfo.years}</div>
+          <ContentInfoCss>{carInfo.make}</ContentInfoCss>
+          <ContentInfoCss>
+            <BlueTextCss>{carInfo.model}</BlueTextCss>
+          </ContentInfoCss>
+          <ContentInfoCss>{carInfo.year}</ContentInfoCss>
         </ContentBoxCss>
-        <div>{carInfo.rentalPrice}</div>
+        <PriceContentCss>{carInfo.rentalPrice}</PriceContentCss>
       </ModelWrapCss>
       <GrigWrapCss>
-        <div>{carInfo.address.split(",")[1]}</div>
-        <VerticalLine></VerticalLine>
-        <div>{carInfo.address.split(",")[2]}</div>
-        <VerticalLine></VerticalLine>
-        <div>{carInfo.rentalCompany}</div>
-        <VerticalLine></VerticalLine>
+        <VerticalLine>{carInfo.address.split(",")[1]}</VerticalLine>
+        {/* <VerticalLine></VerticalLine> */}
+        <VerticalLine>{carInfo.address.split(",")[2]}</VerticalLine>
+        {/* <VerticalLine></VerticalLine> */}
+        <VerticalLine>{carInfo.rentalCompany}</VerticalLine>
+        {/* <VerticalLine></VerticalLine> */}
+        <VerticalLine>{carInfo.type}</VerticalLine>
+        {/* <VerticalLine></VerticalLine> */}
+        <VerticalLine>{carInfo.model}</VerticalLine>
+        {/* <VerticalLine></VerticalLine> */}
+        <VerticalLine>{carInfo.id}</VerticalLine>
         <div>{carInfo.accessories[2]}</div>
-        <div>{carInfo.type}</div>
-        <VerticalLine></VerticalLine>
-        <div>{carInfo.model}</div>
-        <VerticalLine></VerticalLine>
-        <div>{carInfo.id}</div>
-        <VerticalLine></VerticalLine>
-        <div>{carInfo.id}</div>
       </GrigWrapCss>
       <ButtonCss id={carInfo.id} onClick={OpenModal}>
         Learn more

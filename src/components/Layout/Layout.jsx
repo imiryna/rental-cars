@@ -1,5 +1,5 @@
 import { DropdownMenu } from "components/DropdownMenu/DropdownMenu";
-import { MainWrapCss, BoxGrid, SearchBtnCss } from "./Layout.styled";
+import { MainWrapCss, BoxGrid, SearchBtnCss, WrapMenuCss } from "./Layout.styled";
 import { Outlet, useNavigate } from "react-router-dom";
 import { selectCarMake, selectCarPrices, selectfilteredMake, selectfilteredPrice } from "Store/advert/advertSelector";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,11 +26,16 @@ export const Layout = () => {
     <div>
       <MainWrapCss>
         <BoxGrid>
-          <DropdownMenu title="Car brand" handleFunction={setFilterMake}>
+          <DropdownMenu title="Car brand" placeHolder="Enter the text" handleFunction={setFilterMake}>
             {allCarMake}
           </DropdownMenu>
-          <DropdownMenu title="Prices" handleFunction={setFilterPrice}>
+          <DropdownMenu title="Prices" placeHolder="To $" handleFunction={setFilterPrice}>
             {allCarPrice}
+          </DropdownMenu>
+          <DropdownMenu title="Сar mileage / km">
+            <WrapMenuCss>
+              <span>From</span> <span>To</span>
+            </WrapMenuCss>
           </DropdownMenu>
           <SearchBtnCss onClick={handleInputFilter}>Search</SearchBtnCss>
         </BoxGrid>
