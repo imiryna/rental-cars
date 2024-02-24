@@ -19,7 +19,7 @@ export const selectCarMake = createSelector([selectCarsAdvert], (allCars) => {
 });
 
 export const selectCarPrices = createSelector([selectCarsAdvert], (allCars) => {
-  const prices: Array<number> = allCars.map((car) => Number(car.rentalPrice.slice(1)));
-  const pricesSet = new Set<number>(prices);
+  const prices: Array<string> = allCars.map((car) => car.rentalPrice.slice(1));
+  const pricesSet = new Set<string>(prices);
   return Array.from(pricesSet.values());
 });

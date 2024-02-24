@@ -27,6 +27,7 @@ export const Layout = () => {
       <MainWrapCss>
         <BoxGrid>
           <DropdownMenu options={allCarMake} title="Car brand" placeHolder="Enter the text" handleFunction={setFilterMake} />
+          <DropdownMenu options={allCarPrice} title="Prices" placeHolder="To $" handleFunction={setFilterPrice} />
           {/* <DropdownMenu title="Prices" placeHolder="To $" handleFunction={setFilterPrice}>
             {allCarPrice}
           </DropdownMenu>
