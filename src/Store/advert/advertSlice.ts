@@ -1,7 +1,21 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { getAllAdvertThunk, getCarBiIdThunk } from "./advertThunk";
+import ICarAdvert from "../../types/rentalCars.types";
 
-const INITIAL_STATE = {
+interface CarAdvertState {
+  carsAdvert: Array<ICarAdvert>;
+  pages: number;
+  error: string | null;
+  isLoading: boolean;
+  currentCar: ICarAdvert | null;
+  filteredMake: string;
+  filteredPrice: string;
+  filteredCarList: Array<ICarAdvert>;
+  favorites: Array<string>;
+}
+
+const INITIAL_STATE: CarAdvertState = {
   carsAdvert: [],
   pages: 1,
   error: null,
@@ -13,7 +27,7 @@ const INITIAL_STATE = {
   favorites: [],
 };
 
-const handleLoadMore = (state) => {
+const handleLoadMore = (state: CarAdvertState) => {
   state.pages += 1;
   state.isLoading = true;
 };
@@ -52,13 +66,12 @@ const advertSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(getAllAdvertThunk.fulfilled, (state, action) => {
+      .addCase(getAllAdvertThunk.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
         state.carsAdvert = [...state.carsAdvert, ...action.payload];
         state.error = null;
       })
-
-      .addCase(getCarBiIdThunk.fulfilled, (state, action) => {
+      .addCase(getCarBiIdThunk.fulfilled, (state, action: PayloadAction<any>) => {
         state.currentCar = action.payload;
         state.error = null;
       })
@@ -68,7 +81,7 @@ const advertSlice = createSlice({
         state.error = null;
       })
 
-      .addMatcher(isAnyOf(getAllAdvertThunk.rejected, getCarBiIdThunk.rejected), (state, action) => {
+      .addMatcher(isAnyOf(getAllAdvertThunk.rejected, getCarBiIdThunk.rejected), (state, action: PayloadAction<any>) => {
         state.isLoading = false;
         state.error = action.payload;
       });

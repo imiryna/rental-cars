@@ -1,9 +1,9 @@
-import { DropdownMenu } from "components/DropdownMenu/DropdownMenu";
+import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
 import { MainWrapCss, BoxGrid, SearchBtnCss, WrapMenuCss } from "./Layout.styled";
 import { Outlet, useNavigate } from "react-router-dom";
-import { selectCarMake, selectCarPrices, selectfilteredMake, selectfilteredPrice } from "Store/advert/advertSelector";
+import { selectCarMake, selectCarPrices, selectfilteredMake, selectfilteredPrice } from "../../Store/advert/advertSelector";
 import { useSelector, useDispatch } from "react-redux";
-import { commonFilter, setFilterMake, setFilterPrice } from "Store/advert/advertSlice";
+import { commonFilter, setFilterMake, setFilterPrice } from "../../Store/advert/advertSlice";
 
 export const Layout = () => {
   const dispatcher = useDispatch();
@@ -26,18 +26,16 @@ export const Layout = () => {
     <div>
       <MainWrapCss>
         <BoxGrid>
-          <DropdownMenu title="Car brand" placeHolder="Enter the text" handleFunction={setFilterMake}>
-            {allCarMake}
-          </DropdownMenu>
-          <DropdownMenu title="Prices" placeHolder="To $" handleFunction={setFilterPrice}>
+          <DropdownMenu options={allCarMake} title="Car brand" placeHolder="Enter the text" handleFunction={setFilterMake} />
+          {/* <DropdownMenu title="Prices" placeHolder="To $" handleFunction={setFilterPrice}>
             {allCarPrice}
           </DropdownMenu>
-          <DropdownMenu title="Сar mileage / km">
+          <DropdownMenu title="Сar mileage / km" placeHolder="Enter the text" handleFunction={setFilterMake}>
             <WrapMenuCss>
               <span>From</span> <span>To</span>
             </WrapMenuCss>
-          </DropdownMenu>
-          <SearchBtnCss onClick={handleInputFilter}>Search</SearchBtnCss>
+          </DropdownMenu> */}
+          {/* <SearchBtnCss onClick={handleInputFilter}>Search</SearchBtnCss> */}
         </BoxGrid>
       </MainWrapCss>
       <Outlet />

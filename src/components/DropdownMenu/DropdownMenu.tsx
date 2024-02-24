@@ -3,16 +3,25 @@ import { MenuItemsCss, ContainerMenu, DropdownPanelCss, BoxForFilterCss, TitleCs
 
 import { useDispatch } from "react-redux";
 
-export const DropdownMenu = ({ children, title, placeHolder, handleFunction }) => {
+import { AppDispatch } from "../../Store/store";
+
+type Props = {
+  options: Array<string>;
+  title: string;
+  placeHolder?: string;
+  handleFunction: Function;
+};
+
+export const DropdownMenu: React.FC<Props> = ({ options, title, placeHolder, handleFunction }) => {
   const [isToggledDropdown, setIsToggledDropdown] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const dispatcher = useDispatch();
+  const [selectedOption, setSelectedOption] = useState("");
+  const dispatcher: AppDispatch = useDispatch();
 
   const handleToggleDropdown = () => {
     setIsToggledDropdown(!isToggledDropdown);
   };
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsToggledDropdown(false);
     dispatcher(handleFunction(option));
@@ -29,7 +38,7 @@ export const DropdownMenu = ({ children, title, placeHolder, handleFunction }) =
         <BoxDropMenu>
           <TextMenuModel>
             <ContainerMenu>
-              {children.map((item) => (
+              {options.map((item) => (
                 <MenuItemsCss key={item} onClick={() => handleOptionClick(item)}>
                   {item}
                 </MenuItemsCss>

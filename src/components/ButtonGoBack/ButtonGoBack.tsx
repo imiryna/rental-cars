@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { commonFilter, setFilterMake, setFilterPrice } from "Store/advert/advertSlice";
+import { commonFilter, setFilterMake, setFilterPrice } from "../../Store/advert/advertSlice";
 import { ButtonGoBackCss } from "./ButtonGoBack.style";
+import ICarAdvert from "../../types/rentalCars.types";
 
 export const ButtonGoBack = () => {
   const dispatcher = useDispatch();

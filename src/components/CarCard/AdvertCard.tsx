@@ -1,15 +1,21 @@
 import { HeartIcon, BtnCss, WraperCss, ImgCss, BlueHeartIcon, ModelWrapCss, GrigWrapCss, VerticalLine, ButtonCss, ContentBoxCss, PriceContentCss, ContentInfoCss } from "./AdvertCard.styled";
-import { BlueTextCss } from "components/Modal/Modal.styled";
+import { BlueTextCss } from "../../components/Modal/Modal.styled";
 import { useDispatch } from "react-redux";
-import { setCurrentCar } from "Store/advert/advertSlice";
-import { toggleToFavorites } from "Store/advert/advertSlice";
-import { selectFavorites } from "Store/advert/advertSelector";
+import { setCurrentCar } from "../../Store/advert/advertSlice";
+import { toggleToFavorites } from "../../Store/advert/advertSlice";
+import { selectFavorites } from "../../Store/advert/advertSelector";
 import { useSelector } from "react-redux";
+import ICarAdvert from "../../types/rentalCars.types";
 
-export const AdvertCard = ({ carInfo, setIsOpenModal }) => {
+type Props = {
+  carInfo: ICarAdvert;
+  setIsOpenModal: Function;
+};
+
+export const AdvertCard: React.FC<Props> = ({ carInfo, setIsOpenModal }) => {
   const dispatcher = useDispatch();
 
-  const OpenModal = (e) => {
+  const OpenModal = (e: any) => {
     const carId = e.target.id;
     document.body.style.overflow = "hidden";
     dispatcher(setCurrentCar(carId));
