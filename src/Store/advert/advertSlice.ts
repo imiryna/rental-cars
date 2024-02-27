@@ -8,7 +8,7 @@ interface CarAdvertState {
   pages: number;
   error: string | null;
   isLoading: boolean;
-  currentCar: ICarAdvert | null;
+  currentCar: ICarAdvert;
   filteredMake: string;
   filteredPrice: string;
   filteredCarList: Array<ICarAdvert>;

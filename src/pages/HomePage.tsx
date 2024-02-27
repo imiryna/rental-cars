@@ -1,7 +1,7 @@
 import React from "react";
-import { AdvertList } from "components/AdvertList/AdvertList";
+import { AdvertList } from "../components/AdvertList/AdvertList";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <AdvertList />

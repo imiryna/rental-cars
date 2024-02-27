@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { loadMore } from "Store/advert/advertSlice";
+import { loadMore } from "../../Store/advert/advertSlice";
 import { LoadMoreBtnCss } from "./LoadeMoreButton.styled";
 
-export const LoadeMoreButtn = () => {
+export const LoadeMoreButtn: React.FC = () => {
   const dispatcher = useDispatch();
 
   const handleLoadMore = () => {

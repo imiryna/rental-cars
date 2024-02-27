@@ -1,21 +1,21 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, KeyboardEvent } from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentCar, selectCarsAdvert } from "Store/advert/advertSelector";
+import { selectCurrentCar, selectCarsAdvert } from "../../Store/advert/advertSelector";
 import { TextCss, GridWrapCss, ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss, RentalCarBtn, DescriptionCss, RentalConditionBoxCss, RentalConditionPanelCss, BlueTextCss } from "./Modal.styled";
-
-import { ModelWrapCss, VerticalLine, ContentBoxCss, ContentInfoCss } from "components/CarCard/AdvertCard.styled";
+import ICarAdvert from "../../types/rentalCars.types";
+import { ModelWrapCss, VerticalLine, ContentBoxCss, ContentInfoCss } from "../../components/CarCard/AdvertCard.styled";
 
 export const Modal = ({ setIsOpenModal }) => {
-  const currentCarId = useSelector(selectCurrentCar);
+  const currentCarId: ICarAdvert = useSelector(selectCurrentCar);
   const allCars = useSelector(selectCarsAdvert);
-  const currentCar = allCars.find((car) => car.id === Number(currentCarId));
+  const currentCar = allCars.find((car) => car.id === currentCarId.id);
 
   const rentalConditions = currentCar.rentalConditions.split("\n");
   rentalConditions.push(`Mileage: ${currentCar.mileage}`);
   rentalConditions.push(`Price: ${currentCar.rentalPrice}`);
 
-  const rentalConditionsTags = rentalConditions.map((option) => {
-    let readyTag = <></>;
+  const rentalConditionsTags = rentalConditions?.map((option) => {
+    let readyTag: React.JSX.Element = <></>;
     if (option.includes(":")) {
       const splittedString = option.split(":");
       readyTag = (
@@ -35,7 +35,7 @@ export const Modal = ({ setIsOpenModal }) => {
   }, [setIsOpenModal]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => e.code === "Escape" && closeModal();
+    const handleKeyDown = (e: KeyboardEvent) => e.code === "Escape" && closeModal();
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [closeModal]);
