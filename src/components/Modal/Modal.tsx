@@ -1,14 +1,16 @@
-import { useCallback, useEffect, KeyboardEvent } from "react";
+import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentCar, selectCarsAdvert } from "../../Store/advert/advertSelector";
+import { selectCurrentCar } from "../../Store/advert/advertSelector";
 import { TextCss, GridWrapCss, ModalCss, ModalContentCss, BtnCss, CloseIcon, ContainerCss, ImgCss, RentalCarBtn, DescriptionCss, RentalConditionBoxCss, RentalConditionPanelCss, BlueTextCss } from "./Modal.styled";
 import ICarAdvert from "../../types/rentalCars.types";
 import { ModelWrapCss, VerticalLine, ContentBoxCss, ContentInfoCss } from "../../components/CarCard/AdvertCard.styled";
 
-export const Modal = ({ setIsOpenModal }) => {
-  const currentCarId: ICarAdvert = useSelector(selectCurrentCar);
-  const allCars = useSelector(selectCarsAdvert);
-  const currentCar = allCars.find((car) => car.id === currentCarId.id);
+interface IModalProps {
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Modal: React.FC<IModalProps> = ({ setIsOpenModal }) => {
+  const currentCar: ICarAdvert = useSelector(selectCurrentCar);
 
   const rentalConditions = currentCar.rentalConditions.split("\n");
   rentalConditions.push(`Mileage: ${currentCar.mileage}`);
@@ -35,9 +37,11 @@ export const Modal = ({ setIsOpenModal }) => {
   }, [setIsOpenModal]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => e.code === "Escape" && closeModal();
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    const handleKeyPress = (e: KeyboardEvent) => e.code === "Escape" && closeModal();
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => document.removeEventListener("keydown", handleKeyPress);
   }, [closeModal]);
 
   const handleClickOverlay = () => {

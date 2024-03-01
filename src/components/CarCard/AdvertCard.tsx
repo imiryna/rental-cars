@@ -46,16 +46,16 @@ export const AdvertCard: React.FC<Props> = ({ carInfo, setIsOpenModal }) => {
       </ModelWrapCss>
       <GrigWrapCss>
         <VerticalLine>{carInfo.address.split(",")[1]}</VerticalLine>
-        {/* <VerticalLine></VerticalLine> */}
+
         <VerticalLine>{carInfo.address.split(",")[2]}</VerticalLine>
-        {/* <VerticalLine></VerticalLine> */}
+
         <VerticalLine>{carInfo.rentalCompany}</VerticalLine>
-        {/* <VerticalLine></VerticalLine> */}
+
         <VerticalLine>{carInfo.type}</VerticalLine>
-        {/* <VerticalLine></VerticalLine> */}
+
         <VerticalLine>{carInfo.model}</VerticalLine>
-        {/* <VerticalLine></VerticalLine> */}
-        <VerticalLine>{carInfo.id}</VerticalLine>
+
+        <VerticalLine>{carInfo.mileage}</VerticalLine>
         <div>{carInfo.accessories[2]}</div>
       </GrigWrapCss>
       <ButtonCss id={carInfo.id} onClick={OpenModal}>
