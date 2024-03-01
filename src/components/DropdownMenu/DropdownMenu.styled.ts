@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowUp } from "../../images/arrow-up.svg";
-import { ReactComponent as ArrowDown } from "../../images/arrow-down.svg";
+import ArrowUp from "../../images/arrow-up.svg";
+import ArrowDown from "../../images/arrow-down.svg";
 
 export const ContainerMenu = styled.ul`
   position: absolute;

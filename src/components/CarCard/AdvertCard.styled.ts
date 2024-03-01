@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Heart from "images/heart.svg";
-import HeartIco from "images/heart1.svg";
+import Heart from "../../images/heart.svg";
+import HeartIco from "../../images/heart1.svg";
 
 export const WraperCss = styled.div`
   width: 276px;

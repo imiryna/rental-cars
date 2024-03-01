@@ -13,7 +13,7 @@ const config: Configuration = {
       },
       {
         test: /\.svg$/,
-        loader: "url-loader",
+        loader: "react-svg-loader",
       },
     ],
   },
