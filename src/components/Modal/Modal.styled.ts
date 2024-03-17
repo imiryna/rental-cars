@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Close from "../../images/close.svg";
+import { ReactComponent as Close } from "../../images/close.svg";
 
 export const ModalCss = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
